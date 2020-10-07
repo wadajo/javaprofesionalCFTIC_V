@@ -46,6 +46,7 @@ class CajeroDaoImplJdbc implements CajeroDAO {
 	}
 
 	@Override
+	// revisar porque solo me funciona para las que tienen más de un titular
 	public Cuenta recuperarCuenta(int numeroCuenta) {
 		int saldo=0;
 		String tipoCuenta="";
@@ -57,10 +58,11 @@ class CajeroDaoImplJdbc implements CajeroDAO {
 			ps.setInt(1, numeroCuenta);			
 			ResultSet rs=ps.executeQuery();
 			if (rs.next()) {
-				while(rs.next()) {
-					saldo=rs.getInt("saldo");
-					tipoCuenta=rs.getString("tipocuenta");
-					var dni=rs.getInt("idCliente");
+				saldo=rs.getInt("saldo");
+				tipoCuenta=rs.getString("tipocuenta");
+				var dni=rs.getInt("idCliente");
+				titulares.add(recuperarTitular(dni));
+				while(rs.next()) {					
 					titulares.add(recuperarTitular(dni));													
 				}	
 			return new Cuenta(numeroCuenta,titulares,saldo,tipoCuenta);

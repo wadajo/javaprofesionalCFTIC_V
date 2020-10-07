@@ -21,6 +21,7 @@ public class IngresarAction extends HttpServlet {
 		CajeroService service=CajeroServiceFactory.getCajeroService();
 		
 		service.ingresar(((Cuenta)session.getAttribute("logeada")).getId(), Integer.parseInt(request.getParameter("dineroaingresar")));
+		session.setAttribute("logeada", service.recuperarCuenta(((Cuenta)session.getAttribute("logeada")).getId()));
 	}
 
 }

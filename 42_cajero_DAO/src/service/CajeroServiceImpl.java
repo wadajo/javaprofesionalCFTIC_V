@@ -19,8 +19,8 @@ class CajeroServiceImpl implements CajeroService {
 	
 	@Override
 	public void ingresar(int cuenta, int dinero) {
-		Cuenta actual=gestionDao.recuperarCuenta(cuenta);
-		if (actual.getSaldo()>dinero) {
+		Cuenta actual=gestionDao.recuperarCuenta(cuenta);		
+		if(null!=actual) {
 			gestionDao.actualizarSaldoCuenta(cuenta, actual.getSaldo()+dinero);
 			gestionDao.insertarMovimiento(new Movimiento(cuenta,LocalDateTime.now(),dinero,"ingreso"));
 		}
@@ -29,8 +29,10 @@ class CajeroServiceImpl implements CajeroService {
 	@Override
 	public void retirar(int cuenta, int dinero) {
 		Cuenta actual=gestionDao.recuperarCuenta(cuenta);
+		if (null!=actual&&actual.getSaldo()>dinero) {
 		gestionDao.actualizarSaldoCuenta(cuenta, actual.getSaldo()-dinero);
 		gestionDao.insertarMovimiento(new Movimiento(cuenta,LocalDateTime.now(),dinero,"extracción"));
+		}
 	}
 
 	@Override
@@ -42,15 +44,19 @@ class CajeroServiceImpl implements CajeroService {
 	public void transferir(int origen, int destino, double dinero) {
 		Cuenta inicio=gestionDao.recuperarCuenta(origen);
 		Cuenta fin=gestionDao.recuperarCuenta(destino);
-		gestionDao.actualizarSaldoCuenta(origen, inicio.getSaldo()-dinero);
-		gestionDao.insertarMovimiento(new Movimiento(origen,LocalDateTime.now(),dinero,"transferencia-extracción"));
-		gestionDao.actualizarSaldoCuenta(destino, fin.getSaldo()+dinero);
-		gestionDao.insertarMovimiento(new Movimiento(destino,LocalDateTime.now(),dinero,"transferencia-ingreso"));
+		if(null!=inicio&&null!=fin) {
+			gestionDao.actualizarSaldoCuenta(origen, inicio.getSaldo()-dinero);
+			gestionDao.insertarMovimiento(new Movimiento(origen,LocalDateTime.now(),dinero,"transferencia-extracción"));
+			gestionDao.actualizarSaldoCuenta(destino, fin.getSaldo()+dinero);
+			gestionDao.insertarMovimiento(new Movimiento(destino,LocalDateTime.now(),dinero,"transferencia-ingreso"));
+		}
 	}
 
 	@Override
 	public double obtenerSaldo(int cuenta) {
-		return gestionDao.recuperarCuenta(cuenta).getSaldo();
+		if(null!=recuperarCuenta(cuenta))
+			return gestionDao.recuperarCuenta(cuenta).getSaldo();
+		else return 0;
 	}
 
 	

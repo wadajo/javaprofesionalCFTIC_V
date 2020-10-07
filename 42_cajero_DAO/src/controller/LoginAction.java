@@ -22,7 +22,7 @@ public class LoginAction extends HttpServlet {
 		
 		Cuenta logeada=service.recuperarCuenta(Integer.parseInt(request.getParameter("cuenta")));
 		
-		request.setAttribute("resultado", logeada==null?false:true);
+		//request.setAttribute("resultado", logeada==null?false:true);
 		session.setAttribute("logeada", logeada==null?null:logeada);
 	}
 
