@@ -25,13 +25,11 @@ public class LibrosAction extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		List<Libro> librosAMostrar=service.devolverLibros();
-		JSONArray array=new JSONArray();
-		// encontrar otra manera, sin el foreach, es desprolijo
-		librosAMostrar.forEach(unLibro->array.add(Utilidades.convertirLibroAJson(unLibro)));
+		JSONArray array=Utilidades.convertirListaLibrosAJsonArray(librosAMostrar);
+		
 		response.setContentType("application/json");
-		PrintWriter out=response.getWriter();
-		out.print(array);
-		// entrega el JSON, porque le especifiqué el tipo MIME
+		PrintWriter out=response.getWriter();		
+		out.print(array);		
 	}
 
 }
