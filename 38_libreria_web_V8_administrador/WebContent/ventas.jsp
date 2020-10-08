@@ -33,6 +33,11 @@
 		</div>
 	</core:forEach>
 	<br>
+	<p>Ver resultados de página:</p>
+	<core:forEach var="numeroPagina" begin="1" end="${requestScope.totalpaginas}">		
+			<a href="Controller?option=toVentas&pagina=${numeroPagina}"><button>${numeroPagina}</button></a>	
+	</core:forEach>
+	<br><br>
 	<a href="Controller?option=toAdmin"><button>Volver</button></a>
 </body>
 </html>

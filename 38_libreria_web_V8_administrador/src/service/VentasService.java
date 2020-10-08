@@ -5,5 +5,7 @@ import java.util.List;
 import model.Venta;
 
 public interface VentasService {
-	public List<Venta> devolverVentas();
+	List<Venta> devolverVentas();
+	List<Venta> devolverVentasPorPagina(int paginaResultados);
+	int paginasVentas();
 }

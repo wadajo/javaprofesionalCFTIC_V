@@ -19,7 +19,10 @@ public class VentasAction extends HttpServlet {
 		HttpSession session=request.getSession();
 		VentasService service=ManejoBBDDFactory.getVentasService();
 		
-		request.setAttribute("ventas", service.devolverVentas());
+		// tomamos del JSP la página a mostrar, o bien mostramos la 1ra
+		int paginaAConsultar=request.getParameter("pagina")!=null?Integer.parseInt(request.getParameter("pagina")):1;
+		request.setAttribute("ventas", service.devolverVentasPorPagina(paginaAConsultar));
+		request.setAttribute("totalpaginas", service.paginasVentas());
 	}
 
 }
