@@ -24,6 +24,12 @@ public class LibrosAction extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
 		
+		/*
+		 * con Gson sería Gson gson=new Gson();
+		 * String json=gson.toJson(librosAMostrar) y listo
+		 * pero te manda todos los campos del JavaBean a menos que en ellos
+		 * les pongas la keyword "transient" en atributos no deseados
+		 */
 		List<Libro> librosAMostrar=service.devolverLibros();
 		JSONArray array=Utilidades.convertirListaLibrosAJsonArray(librosAMostrar);
 		
