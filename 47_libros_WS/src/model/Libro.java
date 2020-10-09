@@ -6,10 +6,10 @@ public class Libro implements Serializable {
 	private int isbn;
 	private String titulo;
 	private String autor;
-	private int precio;
+	private double precio;
 	private int paginas;
 	private String tema;
-	public Libro(int isbn, String titulo, String autor, int precio, int paginas, String tema) {
+	public Libro(int isbn, String titulo, String autor, double precio, int paginas, String tema) {
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
@@ -37,10 +37,10 @@ public class Libro implements Serializable {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(int precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 	public int getPaginas() {
