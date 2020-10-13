@@ -33,7 +33,7 @@
 				<p>Región: <b>${paiselegido.region}</b></p>				
 				<p>Habitantes: <b>${paiselegido.habitantes}</b></p>				
 				<p>Capital: <b>${paiselegido.capital}</b></p>				
-				<p>Bandera: <br><img alt="Bandera de ${paiselegido.nombre}" src="${paiselegido.bandera}"/></p>		
+				<p>Bandera: <br><img align="left" height="120px" width="200px" alt="Bandera de ${paiselegido.nombre}" src="${paiselegido.bandera}"/></p>		
 			</core:when>
 		</core:choose>
 	
