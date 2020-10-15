@@ -23,7 +23,7 @@ public class LibrosAction extends HttpServlet {
 	LibrosService service;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
-		
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		/*
 		 * con Gson sería Gson gson=new Gson();
 		 * String json=gson.toJson(librosAMostrar) y listo
