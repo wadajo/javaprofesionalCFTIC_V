@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="./css/stylesheet.css">
+<title>Visor de libros</title>
+<script type="text/javascript" src="funcioneslibros.js">
+</script>
+</head>
+<body onload="cargarTemas()">
+<h1>Visor de libros</h1>
+<p>Mostrar libros del tema:</p><br>
+<div>
+		<p>Seleccione el Tema deseado:</p>
+		<select id="listaTemas">
+		</select>
+		<input type="button" onclick="mostrarLibrosTema()" value="Ver libros" />
+	</div>
+<br>
+<section id="datosLibro"></section>
+</body>
+</html>
